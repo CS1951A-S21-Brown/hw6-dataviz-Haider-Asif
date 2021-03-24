@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Lab 6 &laquo; Data Visualization &raquo;</title>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <style type="text/css">
+            /* Custom style rules go here. We've included a few, but feel free to write your own! */
+            button:focus {
+                outline: 0 !important;
+            }
+            svg {
+                display: block;
+                margin: 0 auto;
+                font: 10px sans-serif;
+            }
+            .tooltip {
+                position: absolute;
+                font-size: 12px;
+                min-width: 100px;
+                padding: 10px;
+                width:  auto;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="page-header center">
+                <h1>Lab 6 <small>&laquo; Data Visualization &raquo;</small></h1>
+                <hr>
+                <h3>Part 1: Dynamic Barplot in D3</h3>
+                    <!-- TODO: Uncomment the below lines for part 1B -->
+                <button type="button" class="btn btn-info" onclick="setData(0, 'artist')">Artists</button>
+                <button type="button" class="btn btn-info" onclick="setData(1, 'song')">Songs</button>
+                <div id="barplot"></div>
+                <hr>
+                <h3>Part 2: Scatterplot in D3</h3>
+                <div id="scatterplot"></div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <script type="text/javascript">
+        // Define margins for SVG
+        const margin = {top: 40, right: 100, bottom: 40, left: 200};
+        // TODO: Define the number of examples to display on the graph
+        const NUM_EXAMPLES = 20;
+    </script>
+    <!-- TODO: Part 1B: Update import statement to d3_lab_bar_dynamic.js file -->
+    <script type="text/javascript" src="d3_lab_bar_dynamic.js"></script>
+    <script type="text/javascript" src="d3_lab_scatter.js"></script>
+    </body>
+</html>
