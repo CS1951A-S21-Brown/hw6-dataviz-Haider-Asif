@@ -72,7 +72,7 @@ function setData(index, attr) {
     d3.csv(filenames[index]).then(function(data) {
         // TODO: Clean and strip desired amount of data for barplot
         data = cleanData(data,compareForData,NUM_EXAMPLES);
-
+        console.log(data);
         // TODO: Update the x axis domain with the max count of the provided data
         x.domain([0, d3.max(data, function(d) {
             return parseInt(d['count']);})])

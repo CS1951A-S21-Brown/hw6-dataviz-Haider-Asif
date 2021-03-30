@@ -2,27 +2,138 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
+        <title>International Football Data Visualization Dashboard&raquo;</title>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="main.css"/>
         <!--Feel free to add more CSS files as needed-->
         <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
     </head>
 <body>
     <div class="header">
-        <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
+        <h3>One stop shop for visually appealing International Football  Statistics!</h3>
+        <div class="slider"> 
+            <label for="year-slider"> Set Year: </label>
+            <input id="year-slider" type="text" class="span2" data-slider-min="1872" data-slider-max="2020" data-slider-step="1" data-slider-value="[1970,2020]"/>
+            <br>
+        </div>
+        <div class="text-center"><em>Moving the end-year back would yield more changes to the graphs since most of the games were played in recent years! </em></div>
+        
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
-    <div class="row">
+    <div class="row" role="main">
         <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+            <div id="graph1">
+            </div>
+            <div id="graph2">
+            </div><br/>
         </div>
         <div class="col-lg-6">
-            <div id="graph3"></div>
+            <div id="graph3">
+                <div id="padd">
+                    <text class="text-class"> Winning Percentage for the top 10 nations in your selected range*</text>
+                </div>
+            </div>
         </div>
     </div>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="bar_graph.js"></script>
+    <script type="text/javascript" src="map_graph.js"></script>
+    <script type="text/javascript" src="graph_3.js"></script>
+    <div class="questions">
+        <ul >
+            <li>
+                <b>Describe how your dashboard answers the questions presented. You don't have to address every question directly, but should at a high level address the main questions. (10 points)</b>
+                <br>
+                Ans: The first graph in the dashboard, on the top left corner, displays the number of international games per year (Top 20 in the selected range).
+                This would help our boss see the games per year, and also observe which years had the max number of games in the range of his choice. The range starts
+                out as 1970-2020, but is available for the entire timeline of games that the dataset has (1872-2020). 
+                <br>
+                The second graph on the right side of the page, is a Choropleth, which is a world map colored based on the win percentage of the teams,
+                the darkest shade of the color blue representing the maximum win percentage and the lightest shade representing the least. At one point in time, the map colors
+                only the teams with the top 10 winning percentages in the world in the range specified, so the manager can view the top 10 performing teams in 
+                any year range that they want. The manager can also start at the start of the range, and see how football evolved and spread throughout the world
+                but observing that winning teams start in the North America or Britan, and then move around all over the world. 
+                <br>
+                The last graph is a bar chart, predicting the winner of the 2022 FIFA World cup based on probabilities. These probabilities, as mentioned under
+                the graph title are calculate based on the winning percentage, goals scored, and the goals conceded in the past two world-cups. The reason why I decided
+                to include a combination of these factors is that the winning percentage takes into account ratio between the number of games won and the total number of 
+                games played. If we take its product with the ratio of the total number of goal scored, and the total number of goals conceded, we will get a waited
+                product of the win ratios, based on how strong those victories were (if goals scored are greater goals conceded the win percentage is amplified), and 
+                therefore probabilities calculated from that will allow us to judge a winner in a better way. The reason why I do not take into account the difficulty of the 
+                opponent is because of how unpredictable international football and the world cup is, and therefore, I gave all teams a real chance of doing well.
+            </li>
+            <li>
+                <b>List 3 reasons why D3 was helpful and improved your visualization (6 points)</b>
+                <br>
+                <ul>
+                    <li>
+                        D3's gallery is very vast and allows us to visualize any kind of data, in forms that would allow the users to get the most information from the data.
+                        For example, the map visualization that I used in this Assignment can allow the user to make multiple inferences which go beyond just the top winning nations.
+                        It can map how the history of football playing nations has evolved with time, and how certain countries have been able to maintain good teams because of their financial resources 
+                        whereas how other small nations have risen in the world of football because of pure talent. Graphs like flow charts, chloropeths, scatter plots and others
+                        have the option of creation only because of d3's vast gallery.
+                    </li>
+                    <li>
+                        D3 not only gives us a gallery, but also gives us multiple templates, which we can manipulate however we like, from the shapes of the graphs, to the width of the bars,
+                        to the colors, the formatting of the labels and what not, D3 has it all in terms of allowing the creator to put their heart into the visualization and bring data to life.
+                    </li>
+                    <li>
+                        D3, because its built in HTML, CSS and JS, allows developers to build interactivity into their application, with the visualizations updating real time, 
+                        this allows the users to interact with certain data parameters, and see changes happening in real time, this not only saves them time, but also grabs their 
+                        attention and gets them more interested in the data, while allowing them to get various different inferences from it.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>List 3 reasons why D3 would not be the best tool for creating a visualization (6 points)</b>
+                <br>
+                <ul>
+                    <li>
+                        In my opinion D3 is not the most creator friendly if you do not have experience with JavaScript. I would say that even with 
+                        some experience there are things like asynchronous functions and promise.all() that take some experience getting used to and putting in use. 
+                        I also feel like learning elements of the DOM, how and where what to insert, classes, id's in CSS, and other concepts are hard to 
+                        get command on in the start and hence make d3 not that user friendly especially for people who don't have that much coding experience.
+                    </li>
+                    <li>
+                        Developing with D3 is time consuming, it's not something that one would use with data collected day to day which is not too large / can be represented in simple 
+                        Excel / Sheets charts. D3 is for deriving relationships between large amounts of data, and with the great freedom that it provides comes the large building 
+                        commitment which may not be ideal for all situations.
+                    </li>
+                    <li>
+                        D3 doesn't easily conceal the underlying data, to show interactions at the deep level that d3 is able to, and to truly use it properly, one 
+                        must be okay with sharing that data, encoded data doesn't do too well in d3 visualizations, reason being that interactivity relies on some attribute 
+                        that would impact other attributes to show trends which isn't useful without proper labels, which would compromise some specifics about the data.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <b>Evaluate the accessibility of your dashboard based on the readings in the “Before you begin” section. What kinds of users might find this dashboard accessible and who might have more difficulty? What additional actions might you take to make this dashboard more accessible to all audiences? Your response should refer to at least one of the readings and be about 1 paragraph.</b>
+                <br>
+                Ans: I learnt how to approach Data visualization in a different way after reading "Why accessibility is at the heart of data visualization". I understood that it
+                is not just about the visualizations conveying the message to the viewers, but there's also a question of which users does the visualization not cater to, why are the left out, and 
+                what I could do to make my data visualizations for all. After looking at the visualizations above, and running the WAVE accessibility checker on them, I observed that my color 
+                choices had a better contrast than 4.5:1, which is necessary for colorblind users in order to view the content as non-color blind users can. Moreover, I added structural elements like
+                role="main", for tab navigation, and form labels, and aria landmarks for screen readers so that blind users can also navigate the page easily. What I did miss out on though, was the
+                description of the graphs, although I would add alt-text for any images I would put in a web-page, because this was my first experience with svg, I couldn't incorporate accessibility into the 
+                graphs themselves, which is why I don't think that the visualizations would cater the best to blind people, and hence could use some explanations for the graphs which keep them engaged, but not bore them, and hence make the visualizations cater more users.
+            </li>
+            <li>
+                <b>Reflect on the stages of your design and implementation process when you could have taken steps to make your dashboard more accessible to all audiences. What are some factors that kept you from taking these steps? (a few sentences)</b>
+                <br>
+                Ans: There were a bunch of stages during the implementation process where I did or should have thought about accessibility. The first one would be the structure of the page itself.
+                A clearly defined heading structure makes it easy for blind readers to understand the context better while using a screen reader. A simple assumption would be that the 
+                headings at the top would be larger than the headings below so I kept it that way. Other than that I defined roles for elements too, which would also help
+                with context, telling the user what the role of a certain element is. Moreover, when adding the slider, I had to make a decision to give the input  a form label, 
+                so that the screen reader knows what the input is about, and I also had to give the slider ARIA labels, so the reader knows where it starts, where it ends, what's the year range etc. 
+                What I could not do, was structure the svg's in a way that they are all tabbable or more explicitly, the elements in the svg could all be scrolled using the keyboard. 
+                This was hard because of the fact that I was new to working with svg and hence was not able to incorporate this, which would be an essential part for people who cannot use a mouse, 
+                because this would allow them to understand all the visualizations just with the keyboard, but I will sure keep this in mind and practice for future implementations.
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
